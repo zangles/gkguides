@@ -14,23 +14,23 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active">
+                <li @if(Request::is('home')) class="active" @endif>
                     <a href="{{ route('home') }}" role="button" aria-expanded="false">
                         Home <span class="label">guides</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('home') }}" role="button" aria-expanded="false">
+                <li @if(Request::is('pilots')) class="active" @endif>
+                    <a href="{{ route('pilotList') }}" role="button" aria-expanded="false">
                         Pilots <span class="label">Our waifus</span>
                     </a>
                 </li>
-                <li>
+                <li @if(Request::is('guides/create')) class="active" @endif>
                     <a href="{{ route('guides.create') }}" role="button" aria-expanded="false">
                         Create Guide <span class="label">Just do it!</span>
                     </a>
                 </li>
                 @auth
-                    <li>
+                    <li @if(Request::is('my/guides')) class="active" @endif>
                         <a href="{{ route('user.guides') }}" role="button" aria-expanded="false">
                             My Guides <span class="label">I created them</span>
                         </a>
