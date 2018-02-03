@@ -30,11 +30,9 @@
 
                 <table class="youplay-messages table table-hover">
                     <tbody>
-
-                    @for ($i = 0; $i < 10; $i++)
-                        @include('guides.listUserElement')
-                    @endfor
-
+                        @foreach($guides as $guide)
+                            @include('guides.listUserElement')
+                        @endforeach
                     </tbody>
 
                 </table>

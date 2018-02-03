@@ -6,7 +6,7 @@
             </div>
         </a>
 
-        <a href="#" class="message-from-name" title="Guide Name">Guide Name</a>
+        <a href="#" class="message-from-name" title="Guide Name">{{ $guide->name }}</a>
         <br>
         <span class="date">10th Dec 2015 at 6:29 am</span>
     </td>
