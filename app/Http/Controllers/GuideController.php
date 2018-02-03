@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Guide;
+use App\User;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class GuideController extends Controller
 {
@@ -13,9 +16,24 @@ class GuideController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('guides.show');
+
+//        $guides = Guide::where('public', true)->paginate(15);
+
+        $guides = Guide::where('public', true);
+
+        if ($request->has('type')) {
+            $guides->where('type', '=', $request->get('type'));
+        }
+
+        if ($request->has('search')) {
+            $guides->where('name', 'LIKE', '%'.$request->get('search').'%');
+        }
+
+        $guides = $guides->paginate();
+
+        return view('guides.index', compact('guides') );
     }
 
     /**
@@ -57,7 +75,15 @@ class GuideController extends Controller
      */
     public function show($id)
     {
-        return view('guides.show');
+        $guide = Guide::findOrFail($id);
+        $user = Auth::user();
+
+        if ($user->can('view', $guide)) {
+            return view('guides.show');
+        } else {
+            abort(404);
+        }
+
     }
 
     /**

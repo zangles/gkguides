@@ -2511,7 +2511,7 @@ img.rounded {
 }
 
 .pagination {
-    display: block;
+    display: inline-block;
     margin: 4rem 0;
     clear: both
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Guide;
 use App\Pilot;
 use Illuminate\Http\Request;
 
